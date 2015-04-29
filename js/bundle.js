@@ -1,44 +1,75 @@
-// var creatMap = function(id) {
-// 	var mapOptions = {
-// 		zoom: 8,
-// 		center: new google.maps.LatLng(-34.397, 150.644)
-// 	};
-// 	map = new google.maps.Map(id, mapOptions);
-// }
+var locations = [
+	{
+		id: 0,
+		name: 'Houston',
+		location: {
+			latt: 29.76, 
+			long: -95.38
+		}, 
+		zoom: 8
+	},
+	{
+		id: 1,
+		name: 'Austin',
+		location: {
+			latt: 30.28, 
+			long: -97.76
+		}, 
+		zoom: 8
+	}
+]
+
+
+var Nav = React.createClass({
+	displayName: 'Nav',
+	render: function(){
+		return (
+			React.createElement('input', {type:'button', value: 'click me', onClick:this.clicker})
+		)
+	},
+	clicker: function(){
+		this.props.click();
+	}
+})
 
 var GoogleMap = React.createClass({
 	displayName:'GoogleMap',
 	getInitialState: function(){
-		return ({title:'stuff'})
+		return ({currentLoc: locations[0]})
 	},
 	render: function(){
 		return React.createElement('div', {className: 'maps'},
 			React.createElement('div', {id:'mapA', className:'map'}),
-			React.createElement('div', {id:'mapB', className:'map'})
+			React.createElement(Nav, {click:this.click})
 		)
 	},
 	componentDidMount: function(){
-		// var log;
+		this.setLoc();
+	},
+	componentDidUpdate: function(){
+		this.setLoc();
+	},
+	setLoc: function(){
+		var loc = this.state.currentLoc;
+		var latlong = loc.location;
 		var mapOptions = {
-			zoom: 8,
-			center: new google.maps.LatLng(-34.397, 150.644)
+			zoom: loc.zoom,
+			center: new google.maps.LatLng(latlong.latt, latlong.long)
 		};
 		new google.maps.Map(document.getElementById('mapA'), mapOptions);
-		new google.maps.Map(document.getElementById('mapB'), mapOptions);
+	},
+	click:function(){
+		var id = this.state.currentLoc.id;
+		id = (id + 1) % locations.length;
+		this.setState({currentLoc: locations[id]})
 	}
 })
 
 
 function initialize() {
-	var mapOptions = {
-		zoom: 8,
-		center: new google.maps.LatLng(-34.397, 150.644)
-	};
-	new google.maps.Map(document.getElementById('map'), mapOptions);
-
-	React.render(
+	document.aaa = React.render(
 		React.createElement(GoogleMap, null),
-		document.getElementById('map2')
+		document.getElementById('map')
 	);
 }
 
