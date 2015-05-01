@@ -1,8 +1,8 @@
 {
   "name": "chart-roulette",
   "version": "0.0.1",
-  "description": "Example Highcharts using React without any jQuery",
-  "repository": "https://github.com/penkar/Chartroulette",
+  "description": "Example",
+  "repository": "https://github.com/penkar/",
   "main": "js/body.js",
   "dependencies": {
     "flux": "^2.0.0",
