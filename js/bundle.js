@@ -18,7 +18,20 @@ var locations = [
 		zoom: 8
 	}
 ]
-
+var Body = React.createClass({
+	displayName:'Body',
+	render: function(){
+		return React.createElement('div',null,
+			React.createElement(GoogleMap, null),
+			React.createElement(Nav, {click:this.click})
+		)
+	},
+	click:function(){
+		var id = this.state.currentLoc.id;
+		id = (id + 1) % locations.length;
+		this.setState({currentLoc: locations[id]})
+	}
+})
 
 var Nav = React.createClass({
 	displayName: 'Nav',
@@ -39,8 +52,7 @@ var GoogleMap = React.createClass({
 	},
 	render: function(){
 		return React.createElement('div', {className: 'maps'},
-			React.createElement('div', {id:'mapA', className:'map'}),
-			React.createElement(Nav, {click:this.click})
+			React.createElement('div', {id:'mapA', className:'map'})
 		)
 	},
 	componentDidMount: function(){
@@ -57,18 +69,13 @@ var GoogleMap = React.createClass({
 			center: new google.maps.LatLng(latlong.latt, latlong.long)
 		};
 		new google.maps.Map(document.getElementById('mapA'), mapOptions);
-	},
-	click:function(){
-		var id = this.state.currentLoc.id;
-		id = (id + 1) % locations.length;
-		this.setState({currentLoc: locations[id]})
 	}
 })
 
 
 function initialize() {
 	document.aaa = React.render(
-		React.createElement(GoogleMap, null),
+		React.createElement(Body, null),
 		document.getElementById('map')
 	);
 }
