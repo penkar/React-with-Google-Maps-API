@@ -1,19 +1,86 @@
 /** @jsx React.DOM */
-var React = require('react');
-
-var ExampleApplication = React.createClass({
-	render: function() {
-		var elapsed = Math.round(this.props.elapsed  / 100);
-		var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-		var message =
-		'React has been successfully running for ' + seconds + ' seconds.';
-		return <p>{message}</p>;
+var locations = [
+	{
+		id: 0,
+		name: 'Houston',
+		location: {
+			latt: 29.76, 
+			long: -95.38
+		}, 
+		zoom: 8
+	},
+	{
+		id: 1,
+		name: 'Austin',
+		location: {
+			latt: 30.28, 
+			long: -97.76
+		}, 
+		zoom: 8
+	}
+];
+var Body = React.createClass({
+	getInitialState: function(){
+		return ({currentLoc: locations[0]})
+	},
+	render: function(){
+		return (
+			<div>
+				<GoogleMap currentLoc={this.state.currentLoc}/>
+				<Nav click={this.click} />
+			</div>
+		)
+	},
+	click:function(){
+		console.log('this');
+		var id = this.state.currentLoc.id;
+		id = (id + 1) % locations.length;
+		this.setState({currentLoc: locations[id]})
 	}
 });
-var start = new Date().getTime();
-setInterval(function() {
+
+var Nav = React.createClass({
+	displayName: 'Nav',
+	render: function(){
+		return (
+			<input type='button' value='click me' onClick={this.clicker} />
+		)
+	},
+	clicker: function(){
+		this.props.click();
+	}
+});
+
+var GoogleMap = React.createClass({
+	render: function(){
+		return (
+			<div className='maps'>
+				<div id='mapA' className='map' />
+			</div>
+		)
+	},
+	componentDidMount: function(){
+		this.setLoc();
+	},
+	componentDidUpdate: function(){
+		this.setLoc();
+	},
+	setLoc: function(){
+		var loc = this.props.currentLoc;
+		var latlong = loc.location;
+		var mapOptions = {
+			zoom: loc.zoom,
+			center: new google.maps.LatLng(latlong.latt, latlong.long)
+		};
+		new google.maps.Map(document.getElementById('mapA'), mapOptions);
+	}
+});
+
+function initialize() {
 	React.render(
-		<ExampleApplication elapsed={new Date().getTime() - start} />,
+		<Body />,
 		document.getElementById('map')
 	);
-}, 50);
+};
+
+google.maps.event.addDomListener(window, 'load', initialize);
