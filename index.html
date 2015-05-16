@@ -4,6 +4,7 @@
   <title>Simple Map</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -41,6 +42,7 @@
 					<div id="wrapper">
 						<Nav click={this.click}/>
 						<GoogleMap currentLoc={this.state.currentLoc}/>
+						<LocationList />
 					</div>
 				)
 			},
@@ -53,11 +55,10 @@
 		});
 
 		var Nav = React.createClass({
-			displayName: 'Nav',
 			render: function(){
 				return (
 					<div className='navbar'>
-					<input type='button' value='click me' onClick={this.clicker} />
+					<input className="pure-button" type='button' value='click me' onClick={this.clicker} />
 					</div>
 				)
 			},
@@ -90,6 +91,24 @@
 				new google.maps.Map(document.getElementById('mapA'), mapOptions);
 			}
 		});
+
+		var LocationRow = React.createClass({
+			render: function(){
+				return (<li> stuff</li>)
+			}
+		})
+
+		var LocationList = React.createClass({
+			render: function(){
+				return (
+					<ol>
+						for(var i = 0, iLen = locations.length; i < iLen; i++){	
+							<LocationRow data={locations[i]} />
+						}
+					</ol>
+				)
+			}
+		})
 
 		function initialize() {
 			React.render(

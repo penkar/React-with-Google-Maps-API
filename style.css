@@ -18,8 +18,9 @@ html, body {
 }
 
 .navbar {
+	padding-top: 20px;
 	float: left;
 	height: 100%;
-	width: 100px;
+	width: 150px;
 	background-color: gray;
 }
