@@ -42,12 +42,10 @@
 					<div id="wrapper">
 						<Nav click={this.click}/>
 						<GoogleMap currentLoc={this.state.currentLoc}/>
-						<LocationList />
 					</div>
 				)
 			},
-			click:function(){
-				console.log('this');
+			click:function(){s
 				var id = this.state.currentLoc.id;
 				id = (id + 1) % locations.length;
 				this.setState({currentLoc: locations[id]})
@@ -70,8 +68,11 @@
 		var GoogleMap = React.createClass({
 			render: function(){
 				return (
-					<div className='maps'>
+					<div>
+						<div className='maps'>
 						<div id='mapA' className='map' text-align="right"/>
+						</div>
+						<LocationList />
 					</div>
 				)
 			},
@@ -94,18 +95,47 @@
 
 		var LocationRow = React.createClass({
 			render: function(){
-				return (<li> stuff</li>)
+				var loc = this.props.data;
+				return (
+					<tr>
+						<td>{loc.name}</td>
+						<td>{loc.location.latt}</td>
+						<td>{loc.location.latt}</td>
+					</tr>
+				)
+			}
+		});
+
+		var LocationInput = React.createClass({
+			render: function(){
+				return (
+					<tr>
+						<td><input /></td>
+						<td><input /></td>
+						<td><input /></td>
+					</tr>
+				)
 			}
 		})
 
 		var LocationList = React.createClass({
 			render: function(){
+				var arr = [];
+				for(var i = 0, iLen = locations.length; i < iLen; i++){	
+					arr.push(<LocationRow data={locations[i]} />)
+				}
 				return (
-					<ol>
-						for(var i = 0, iLen = locations.length; i < iLen; i++){	
-							<LocationRow data={locations[i]} />
-						}
-					</ol>
+					<table className="pure-table">
+						<thead>
+						<tr>
+							<th>City</th>
+							<th>Lattitude</th>
+							<th>Longitude</th>
+						</tr>
+						</thead>
+						{arr}
+						<LocationInput />
+					</table>
 				)
 			}
 		})
