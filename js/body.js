@@ -1,3 +1,5 @@
+var LocationList = require('./components/locationlist.js')
+
 var locations = [
 	{
 		id: 0,
@@ -99,55 +101,7 @@ var GoogleMap = React.createClass({
 	}
 });
 
-var LocationRow = React.createClass({
-	render: function(){
-		var loc = this.props.data;
-		return (
-			<tr>
-				<td>{loc.name}</td>
-				<td>{loc.location.latt}</td>
-				<td>{loc.location.latt}</td>
-			</tr>
-		)
-	}
-});
 
-var LocationInput = React.createClass({
-	render: function(){
-		return (
-			<tr>
-				<td><input /></td>
-				<td><input /></td>
-				<td><input /></td>
-			</tr>
-		)
-	}
-})
-
-var LocationList = React.createClass({
-	render: function(){
-		var arr = [];
-		for(var i = 0, iLen = locations.length; i < iLen; i++){	
-			arr.push(<LocationRow data={locations[i]} />)
-		}
-		return (
-			<div>
-			<table className="pure-table">
-				<thead>
-				<tr>
-					<th>City</th>
-					<th>Lattitude</th>
-					<th>Longitude</th>
-				</tr>
-				</thead>
-				{arr}
-				<LocationInput />
-			</table>
-			<input type='button' value='Add New Location' id="add"/>
-			</div>
-		)
-	}
-})
 
 function initialize() {
 	React.render(
