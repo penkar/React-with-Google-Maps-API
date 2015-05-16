@@ -1,4 +1,5 @@
 var LocationList = require('./components/locationlist.js')
+var Nav = require('./components/nav.js')
 
 var locations = [
 	{
@@ -57,19 +58,6 @@ var Body = React.createClass({
 		var id = this.state.currentLoc.id;
 		id = (id + 1) % locations.length;
 		this.setState({currentLoc: locations[id]})
-	}
-});
-
-var Nav = React.createClass({
-	render: function(){
-		return (
-			<div className='navbar'>
-			<input className="pure-button" type='button' value='click me' onClick={this.clicker} />
-			</div>
-		)
-	},
-	clicker: function(){
-		this.props.click();
 	}
 });
 

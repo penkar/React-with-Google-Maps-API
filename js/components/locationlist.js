@@ -1,3 +1,6 @@
+var LocationRow = require('./locationrow.js')
+var LocationInput = require('./locationinput.js')
+
 var locations = [
 	{
 		id: 0,
@@ -18,31 +21,6 @@ var locations = [
 		zoom: 8
 	}
 ];
-
-var LocationRow = React.createClass({
-	render: function(){
-		var loc = this.props.data;
-		return (
-			<tr>
-				<td>{loc.name}</td>
-				<td>{loc.location.latt}</td>
-				<td>{loc.location.latt}</td>
-			</tr>
-		)
-	}
-});
-
-var LocationInput = React.createClass({
-	render: function(){
-		return (
-			<tr>
-				<td><input /></td>
-				<td><input /></td>
-				<td><input /></td>
-			</tr>
-		)
-	}
-})
 
 var LocationList = React.createClass({
 	render: function(){
