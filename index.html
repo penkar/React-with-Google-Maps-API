@@ -45,7 +45,7 @@
 					</div>
 				)
 			},
-			click:function(){s
+			click:function(){
 				var id = this.state.currentLoc.id;
 				id = (id + 1) % locations.length;
 				this.setState({currentLoc: locations[id]})
@@ -125,6 +125,7 @@
 					arr.push(<LocationRow data={locations[i]} />)
 				}
 				return (
+					<div>
 					<table className="pure-table">
 						<thead>
 						<tr>
@@ -136,6 +137,8 @@
 						{arr}
 						<LocationInput />
 					</table>
+					<input type='button' value='Add New Location' id="add"/>
+					</div>
 				)
 			}
 		})
