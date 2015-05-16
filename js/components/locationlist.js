@@ -1,32 +1,34 @@
-var LocationRow = require('./locationrow.js')
-var LocationInput = require('./locationinput.js')
-
-var locations = [
-	{
-		id: 0,
-		name: 'Houston',
-		location: {
-			latt: 29.76, 
-			long: -95.38
-		}, 
-		zoom: 8
-	},
-	{
-		id: 1,
-		name: 'Austin',
-		location: {
-			latt: 30.28, 
-			long: -97.76
-		}, 
-		zoom: 8
-	}
-];
+var LocationRow = require('./locationrow.js');
+var LocationInput = require('./locationinput.js');
+var LocationStore = require('../store/locationstore.js');
 
 var LocationList = React.createClass({
+	_click: function(){
+		LocationStore.add();
+	},
+	componentDidMount: function() {
+		LocationStore.addChangeListener(this._onChange);
+	},
+	componentWillUnmount: function() {
+		LocationStore.removeChangeListener(this._onChange);
+	},
+	getInitialState: function(){
+		return {
+			current: 0,
+			locations: LocationStore.getAll()
+		}
+	},
+	_onChange: function(){
+		this.setState({
+			current: LocationStore.getCurrent(),
+			locations: LocationStore.getAll()
+		})
+	},
 	render: function(){
 		var arr = [];
-		for(var i = 0, iLen = locations.length; i < iLen; i++){	
-			arr.push(<LocationRow data={locations[i]} ref={locations[i].id} />)
+		for(var i = 0, iLen = this.state.locations.length; i < iLen; i++){	
+			var loc = this.state.locations[i]
+			arr.push(<LocationRow data={loc} ref={loc.id} cur={this.state.current} />)
 		}
 		return (
 			<div>
@@ -41,7 +43,7 @@ var LocationList = React.createClass({
 				{arr}
 				<LocationInput />
 			</table>
-			<input type='button' value='Add New Location' id="add"/>
+			<input type='button' value='Add New Location' id="add" onClick={this._click} />
 			</div>
 		)
 	}

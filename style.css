@@ -24,3 +24,7 @@ html, body {
 	width: 150px;
 	background-color: gray;
 }
+
+.currentLoc{
+	background: rgb(227, 188, 188);
+}
