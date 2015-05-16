@@ -1,8 +1,8 @@
 {
-  "name": "chart-roulette",
+  "name": "React-GoogleMap",
   "version": "0.0.1",
-  "description": "Example",
-  "repository": "https://github.com/penkar/",
+  "description": "Example Google Maps API with React",
+  "repository": "https://github.com/penkar/React-with-Google-Maps-API",
   "main": "js/body.js",
   "dependencies": {
     "flux": "^2.0.0",
