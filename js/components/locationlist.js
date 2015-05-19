@@ -3,9 +3,6 @@ var LocationInput = require('./locationinput.js');
 var LocationStore = require('../store/locationstore.js');
 
 var LocationList = React.createClass({
-	_click: function(){
-		LocationStore.add();
-	},
 	componentDidMount: function() {
 		LocationStore.addChangeListener(this._onChange);
 	},
@@ -43,7 +40,6 @@ var LocationList = React.createClass({
 					<LocationInput />
 					{arr}
 				</table>
-			<input type='button' value='Add New Location' id="add" onClick={this._click} />
 			</div>
 		)
 	}

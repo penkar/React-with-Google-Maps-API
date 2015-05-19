@@ -32,3 +32,7 @@ td{
 .currentLoc{
 	background: rgb(227, 188, 188);
 }
+
+input.pure-button{
+	margin-top: 20px;
+}
