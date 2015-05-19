@@ -40,9 +40,9 @@ var LocationList = React.createClass({
 					<th>Longitude</th>
 				</tr>
 				</thead>
-				{arr}
-				<LocationInput />
-			</table>
+					<LocationInput />
+					{arr}
+				</table>
 			<input type='button' value='Add New Location' id="add" onClick={this._click} />
 			</div>
 		)
