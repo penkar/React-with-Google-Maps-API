@@ -12,6 +12,10 @@ html, body {
 	position: absolute;
 }
 
+td{
+	width: 175px;
+}
+
 .map{
 	height: 400px;
 	width: 400px;
