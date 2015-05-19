@@ -53,10 +53,14 @@ var LocationStore = assign({}, EventEmitter.prototype, {
 			id: _numeric,
 			name: document.getElementById('cityid').value,
 			location: {
-				latt: document.getElementById('lattid').value,
-				long: document.getElementById('longid').value
-			}
+				latt: parseFloat(document.getElementById('lattid').value),
+				long: parseFloat(document.getElementById('longid').value)
+			},
+			zoom: 8
 		});
+		document.getElementById('cityid').value = '';
+		document.getElementById('lattid').value = '';
+		document.getElementById('longid').value = '';
 		_numeric.current = _numeric.count;
 		_numeric.count += 1;
 		this.emitChange()
