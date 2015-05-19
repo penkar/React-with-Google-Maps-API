@@ -1,3 +1,4 @@
+var Header = require('./components/header.js')
 var Nav = require('./components/nav.js')
 var GoogleMap = require('./components/googlemap.js')
 var LocationStore = require('./store/locationstore.js');
@@ -23,6 +24,7 @@ var Body = React.createClass({
 		return (
 			<div id="wrapper">
 				<Nav click={this.click}/>
+				<Header />
 				<GoogleMap currentLoc={this.state.currentLoc}/>
 			</div>
 		)
