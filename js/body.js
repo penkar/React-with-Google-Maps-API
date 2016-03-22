@@ -1,13 +1,13 @@
-var Header = require('./components/header.js')
-var Nav = require('./components/nav.js')
-var GoogleMap = require('./components/googlemap.js')
+var Header = require('./components/header.js');
+var Nav = require('./components/nav.js');
+var GoogleMap = require('./components/googlemap.js');
 var LocationStore = require('./store/locationstore.js');
 
 var Body = React.createClass({
 	getInitialState: function(){
 		return ({
 			currentLoc: LocationStore.getCurrentLoc()
-		})
+		});
 	},
 	componentDidMount: function() {
 		LocationStore.addChangeListener(this._onChange);

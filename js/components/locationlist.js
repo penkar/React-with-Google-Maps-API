@@ -13,20 +13,23 @@ var LocationList = React.createClass({
 		return {
 			current: 0,
 			locations: LocationStore.getAll()
-		}
+		};
 	},
 	_onChange: function(){
 		this.setState({
 			current: LocationStore.getCurrent(),
 			locations: LocationStore.getAll()
-		})
+		});
+	},
+	_locations: function(){
+		var arr = [];
+		for(var i = 0, iLen = this.state.locations.length; i < iLen; i++){
+			var loc = this.state.locations[i];
+			arr.push(<LocationRow data={loc} ref={loc.id} cur={this.state.current} />);
+		}
+		return arr;
 	},
 	render: function(){
-		var arr = [];
-		for(var i = 0, iLen = this.state.locations.length; i < iLen; i++){	
-			var loc = this.state.locations[i]
-			arr.push(<LocationRow data={loc} ref={loc.id} cur={this.state.current} />)
-		}
 		return (
 			<div>
 			<table className="pure-table">
@@ -38,7 +41,7 @@ var LocationList = React.createClass({
 				</tr>
 				</thead>
 					<LocationInput />
-					{arr}
+					{this._locations()}
 				</table>
 			</div>
 		)

@@ -3,7 +3,7 @@ var LocationRow = React.createClass({
 		var loc = this.props.data;
 		var style;
 		if(loc.id === this.props.cur){
-			style = 'currentLoc'
+			style = 'currentLoc';
 		}
 		return (
 			<tr className={style}>

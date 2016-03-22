@@ -4,7 +4,7 @@ var Header = React.createClass({
 			<div>
 				<h2>Very Brief Google Maps Implementation in React</h2>
 			</div>
-		)
+		);
 	}
 })
 

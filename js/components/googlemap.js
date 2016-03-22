@@ -1,11 +1,11 @@
-var LocationList = require('./locationlist.js')
+var LocationList = require('./locationlist.js');
 
 var GoogleMap = React.createClass({
 	render: function(){
 		return (
 			<div>
 				<div className='maps'>
-				<div id='mapA' className='map' text-align="right"/>
+					<div id='mapA' className='map' text-align="right"/>
 				</div>
 				<LocationList />
 			</div>

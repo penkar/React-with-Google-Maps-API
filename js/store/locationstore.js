@@ -6,18 +6,18 @@ var _locations = [
 		id: 0,
 		name: 'Houston',
 		location: {
-			latt: 29.76, 
+			latt: 29.76,
 			long: -95.38
-		}, 
+		},
 		zoom: 8
 	},
 	{
 		id: 1,
 		name: 'Austin',
 		location: {
-			latt: 30.28, 
+			latt: 30.28,
 			long: -97.76
-		}, 
+		},
 		zoom: 8
 	}
 ];
@@ -45,8 +45,8 @@ var LocationStore = assign({}, EventEmitter.prototype, {
 		return _locations[_numeric.current];
 	},
 	setNext: function(){
-		_numeric.current = (_numeric.current +1) %  _locations.length
-		this.emitChange()
+		_numeric.current = (_numeric.current +1) %  _locations.length;
+		this.emitChange();
 	},
 	add: function(){
 		_locations.push({
@@ -63,8 +63,8 @@ var LocationStore = assign({}, EventEmitter.prototype, {
 		document.getElementById('longid').value = '';
 		_numeric.current = _numeric.count;
 		_numeric.count += 1;
-		this.emitChange()
+		this.emitChange();
 	}
-})
+});
 
 module.exports = LocationStore;
